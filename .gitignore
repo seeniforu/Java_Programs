@@ -1,0 +1,8 @@
+.vscode/settings.json
+programs/.classpath
+programs/.project
+programs/.settings/org.eclipse.core.resources.prefs
+programs/.settings/org.eclipse.jdt.core.prefs
+programs/.settings/org.eclipse.m2e.core.prefs
+programs/target/classes/com/example/App.class
+programs/target/test-classes/com/example/AppTest.class
