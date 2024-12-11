@@ -4,8 +4,10 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Set;
 
 import org.testng.annotations.Test;
 
@@ -126,6 +128,60 @@ public class AppTest
     }
 
     @Test
+    public void reverseNumber(){
+        int n = 90785;
+
+        int temp = 0;
+        while(n!=0){
+            temp = temp*10 + n%10;
+            n = n/10;
+        }
+
+        System.out.println("Reversed number is : " + temp); // Reversed Number is : 58709
+    }
+
+    @Test
+    public void reverseNumberUsingString(){
+        
+        String s = "0100";
+
+        int len = s.length()-1;
+        String temp = "";
+        while(len>=0){
+            temp = temp + s.charAt(len);
+            len--;
+        }
+        System.out.println("Reversed number is : " + temp); //Reversed number is : 0010
+    }
+
+    @Test
+    public void countNumberofDigits(){
+        int i = 999999999;
+
+        int count = 0;
+
+        while(i!=0){
+            i = i/10;
+            count = count+1;
+        }
+        System.out.println("No. of digits present is : "+count); // No. of digits present is : 9
+    }
+
+    @Test
+    public void sumofDigits(){
+        int i = 99;
+
+        int temp, sum = 0;
+
+        while(i!=0){
+            temp = i%10;
+            sum = sum+temp;
+            i=i/10;
+        }
+        System.out.println("Sum of digits is : "+sum); // Sum of digits is : 18
+    }
+
+    @Test
     public void printDuplicates(){
         String string1 = "mssrr";  
         int count;  
@@ -153,16 +209,18 @@ public class AppTest
     @Test
     public void removeDup(){
         StringBuilder str = new StringBuilder();
-
-        String s = "Hello there";
+        Set<Character> sets = new LinkedHashSet<>();
+        String s = "Hello there hi";
 
         for(char c: s.toCharArray()){
             if(!str.toString().contains(String.valueOf(c))){
                 str.append(c);
+            }else{
+                sets.add(c);
             }
         }
-
-        System.out.println(str);
+        System.out.println(str); // Helo thri
+        System.out.println(sets.toString()); // [l, e,  , h]
     }
 
     @Test
