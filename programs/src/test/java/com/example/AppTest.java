@@ -168,6 +168,74 @@ public class AppTest
     }
 
     @Test
+    public void countEvenandOddDigits(){
+        int d = 132493;
+
+        int temp=0, oddcount=0, evenCount = 0;
+
+        while(d!=0){
+            temp = d%10;
+            if(temp % 2 == 0)
+                evenCount++;
+            else
+                oddcount++;
+            
+            d=d/10;
+        }
+        System.out.println("Odd Count is : "+oddcount+" Even Count is : "+evenCount);
+    }
+
+    @Test
+    public void largestNumberinInt(){
+        int l = 10873;
+
+        int large = 0, temp = 0;
+        large = l%10;
+
+        while(l!=0){
+            temp = l%10;
+            if(temp>large){
+                large = temp;
+            }
+            l = l/10;
+        }
+        System.out.println("Largest digit is : "+large);
+    }
+
+    @Test
+    public void largestNumberinArray(){
+        int arr[] = {23,45,99,30,76,908};
+
+        int len = arr.length;
+
+        int Largest = arr[0];
+
+        for(int i = 0;i<len;i++){
+            if(arr[i]>Largest)
+                Largest = arr[i];
+        }
+        System.out.println("Largest number in array is : "+Largest);
+    }
+
+    @Test
+    public void fibonnaciSeries(){
+
+        int f = 10;
+        int n1 = 0,n2=1,sum=0;
+
+        System.out.println(n1);
+        System.out.println(n2);
+
+        for(int i = 2; i<f;i++){
+            sum = n1 + n2;
+            System.out.println(sum);
+            n1 = n2;
+            n2 = sum;
+        }
+        System.out.println("Sum = "+sum);
+    }
+
+    @Test
     public void sumofDigits(){
         int i = 99;
 
@@ -284,5 +352,47 @@ public class AppTest
         b = a-b;
         a = a-b;
         System.out.println("Swapping a = "+a+" b = "+b);
+    }
+
+    @Test
+    public void primeNumber(){
+        int number = 97; // It is a prime number
+        boolean flag = true;
+        System.out.println((int)Math.sqrt(number)); // 9
+        if(number>1){
+            for(int i = 2;i<=Math.sqrt(number);i++){
+                if(number%i == 0){
+                    flag = false;
+                }
+            }
+        }
+        if(number>1 && flag == true){
+            System.out.println("It is a prime number");
+        }else{
+            System.out.println("Not a prime number");
+        }
+    }
+
+    @Test
+    public void largestPrimeNumber(){
+        
+        int num = 100000;
+        for(int j = num-1;j>1;j--){
+            if(isPrime(j)){
+                System.out.println("Largest Prime number is "+j);
+                break;
+            }
+        }
+        
+    }
+     static boolean isPrime(int number){
+        if(number>1){
+            for(int i = 2;i<=Math.sqrt(number);i++){
+                if(number%i == 0){
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 }
