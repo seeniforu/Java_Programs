@@ -658,6 +658,21 @@ public class AppTest
     // Find second largest number in array
     @Test
     public void find2ndLargest(){
+        int a[] = {10, 20,30, 80, 76,54, 67, 99};
 
+        int max = 0;
+        int secondMax = 0;
+
+        for(int i = 0;i<a.length;i++){
+            if(a[i]>max){
+                max = a[i];
+            }
+        }
+        for(int j = 0;j<a.length;j++){
+            if(a[j]<max && a[j]>secondMax)
+                secondMax = a[j];
+        }
+        System.out.println("Largest is : "+max);
+        System.out.println("Second max is : "+secondMax);
     }
 }
