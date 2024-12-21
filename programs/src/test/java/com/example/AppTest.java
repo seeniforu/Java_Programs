@@ -4,8 +4,10 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -394,5 +396,262 @@ public class AppTest
             }
         }
         return true;
+    }
+
+    // Factorial of a number
+    @Test
+    public void factorialofAnumber(){
+        int f = 10;
+        int temp = 1;
+        for(int i=1; i<=f;i++){
+            temp = temp*i;
+        }
+        System.out.println("Factorial of number "+f+" is : "+temp);
+    }
+
+    // Sum of elements in array
+    @Test
+    public void sumOfElementsInArray(){
+        //int arr[] = {34,45,56,67,78,89,100};
+        int arr[] = {98, 55, 54, 59, 40};
+        
+        int len = arr.length;
+        int sum = 0;
+
+        for(int i = 0; i<len;i++){
+            sum = sum + arr[i];
+        }
+        System.out.println("Sum of digits in the array: "+sum);
+    }
+
+    // Sum of random number sin array
+    @Test
+    public void sumOfRandomNumbersinArray(){
+        int arr[] = new int[5];
+        Random r = new Random();
+
+        int sum = 0;
+        for(int i = 0; i<5;i++){
+            arr[i] = r.nextInt(100);
+            sum = sum + arr[i];
+        }
+
+        System.out.println(Arrays.toString(arr));
+        System.out.println(sum);
+    }
+
+    // Even and odd number in a array
+    @Test
+    public void EvenandOddNumbersInArray(){
+        int arr[] = {1,2,3,4,5,6,7,8,9};
+
+        for(int i=0;i<arr.length;i++){
+            if(arr[i]%2==0){
+                System.out.println("Even number : "+arr[i]);
+            }else{
+                System.out.println("Odd Number : "+arr[i]);
+            }
+        }
+    }
+
+    // Arrays equal or not
+    @Test
+    public void arraysEquality(){
+        int[] a = {1,2,4};
+        int[] b = {1,2,3};
+        int countA = a.length;
+        int countB = b.length;
+        int temp = 0;
+        if(countA == countB){
+            for(int i =0;i<countA;i++){
+                if(a[i]==b[i]){
+                    temp++;
+                }
+            }
+            if(temp == countA){
+                System.out.println("Arrays are Equal");
+            }else{
+                System.out.println("Arrays are not equal with values");
+            }
+        }else{
+            System.out.println("Arrays are not equal with length");
+        }
+    }
+
+    //Find missing number in a range of numbers in array
+    @Test
+    public void arraysMissingNumber(){
+        int a[] = {952,954,958,960};
+
+        int aLen = a.length;
+        int minRange = a[0], maxRange = a[0];
+        int sum1 = 0, sum2 = 0;
+        int rangediff = a[1]-a[0];
+        for(int i = 0;i<aLen;i++){
+            sum1 = sum1 + a[i];
+            if(a[i]>maxRange){
+                maxRange=a[i];
+            }
+            if(a[i]<minRange){
+                minRange=a[i];
+            }
+        }
+
+        System.out.println("Min : "+minRange+" Max : "+maxRange);
+
+        for(int i = minRange;i<=maxRange;i=i+rangediff){
+            sum2 = sum2+i;
+        }
+
+        System.out.println("Missing number is : "+(sum2-sum1));
+    }
+
+    // Sorting string array based on length of string
+    @Test
+    public void SortStringArray(){
+
+        String stringList[] = {"Java","Assembly","C","Python","C++","R","Node"};
+        int listLength = stringList.length;
+        int lengthList[] = new int[listLength];
+        String sortedList[] = new String[listLength];
+        int temp = 0;
+
+        for(int i = 0;i<listLength;i++){
+            temp = stringList[i].length();
+            lengthList[i] = temp;
+        }
+        Arrays.sort(lengthList);
+        System.out.println(Arrays.toString(lengthList)); // [1, 1, 3, 4, 4, 6, 8]
+
+        for(int j = 0;j<listLength;j++){
+            for(int k = 0;k<listLength;k++){
+                if(!(stringList[k].length()==lengthList[j]))
+                    continue;
+                else if(Arrays.toString(sortedList).contains(stringList[k])){
+                    continue;
+                }else{
+                    sortedList[j] = stringList[k];
+                    break;
+                }
+            }
+        }
+        System.out.println(Arrays.toString(sortedList)); // [C, R, C++, Java, Node, Python, Assembly]
+    }
+
+    // Find duplicates in string array
+    @Test
+    public void findDuplicatesinArray(){
+
+        String arr[] = {"Java","Assembly","C","Python","C++","C","Python"};
+        String flag = "ownLogic";
+        int length = arr.length;
+        boolean flagDup = false;
+
+        if(flag == "ownLogic"){
+            for(int i = 0;i<length;i++){
+                for(int j = i+1;j<length;j++){
+                    if(arr[i] == arr[j]){
+                        System.out.println("Duplicate is : "+arr[j]);
+                        flagDup = true;
+                    }
+                }
+            }
+            if(flagDup == false){
+                System.out.println("No duplicates found");
+            }
+
+        }else if (flag == "Hashset") {
+            HashSet<String> s = new HashSet<>();
+            for(String l:arr){
+                if(s.add(l)==false)
+                    System.out.println("Duplicate is : "+l);
+                    flagDup = true;
+            }
+        }
+        if(flagDup == false){
+            System.out.println("No duplicates found");
+        }
+    }
+
+    //Binary Search
+    @Test
+    public void binarySearch(){
+
+        int arr[] = {100,200,300,400,500,600,700,800,900,1000,1100,1200};
+        int length = arr.length;
+        int l = 0;
+        int h = length-1;
+        int element = 700;
+        boolean flag = false;
+        
+        while (l<=h) {
+            int mid = (l+h)/2;
+            if(arr[mid] == element){
+                System.out.println("Element is there: "+element);
+                flag = true;
+                break;
+            }
+            if(arr[mid]<element){
+                l = mid+1;
+            }
+            if(arr[mid]>element){
+                h = mid-1;
+            }
+        }
+        if(flag == false){
+            System.out.println("Element not found");
+        }
+    }
+
+    //Bubble sort
+    @Test
+    public void bubbleSort(){
+        int array[] = {44,49,46,47,45};
+
+        int length = array.length;
+        String flag = "Descending";
+
+        for(int i = 0; i<length-1;i++){
+            for(int j = 0;j<length-1;j++){
+                if(flag == "Descendng"){
+                    if(array[j]<array[j+1]){
+                        int temp = array[j+1];
+                        array[j+1] = array[j];
+                        array[j]=temp;
+                    }
+                }else{
+                    if(array[j]>array[j+1]){
+                        int temp = array[j+1];
+                        array[j+1] = array[j];
+                        array[j] = temp;
+                    }
+                }
+            }
+        }
+        if(flag == "Descending")
+            System.out.println("Descending order array: "+Arrays.toString(array));
+        else
+            System.out.println("Ascending order array: "+Arrays.toString(array));
+    }
+
+    // Find second largest number in array
+    @Test
+    public void find2ndLargest(){
+        int a[] = {10, 20,30, 80, 76,54, 67, 99};
+
+        int max = 0;
+        int secondMax = 0;
+
+        for(int i = 0;i<a.length;i++){
+            if(a[i]>max){
+                max = a[i];
+            }
+        }
+        for(int j = 0;j<a.length;j++){
+            if(a[j]<max && a[j]>secondMax)
+                secondMax = a[j];
+        }
+        System.out.println("Largest is : "+max);
+        System.out.println("Second max is : "+secondMax);
     }
 }
