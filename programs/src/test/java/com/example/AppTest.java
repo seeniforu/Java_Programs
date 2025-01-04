@@ -4,6 +4,9 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.BitSet;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -653,5 +656,256 @@ public class AppTest
         }
         System.out.println("Largest is : "+max);
         System.out.println("Second max is : "+secondMax);
+    }
+
+    // Parallel sort and reverse order using built in methods
+    @Test
+    public void builtInSorting(){
+        
+        Integer a[] = {70,80,900,45,56,34};
+        Arrays.parallelSort(a, Collections.reverseOrder());
+        System.out.println("Parallel sorting: "+Arrays.toString(a));
+        Arrays.sort(a);
+        System.out.println("Sorted array: "+Arrays.toString(a));
+    }
+
+    // Finding number occerences of a character in a string
+    @Test
+    public void occurenceOfchar(){
+        String s = "Find occurence of characters";
+        String find = "e";
+        
+        int originalLength = s.length();
+        String afterRemove = s.replaceAll(find, "");
+
+        int newLength = afterRemove.length();
+
+        int finalCount = originalLength-newLength;
+
+        System.out.println("Number of occurence of "+find+" is : "+finalCount);
+    }
+
+    // Count number of words
+    @Test
+    public void countNumberOfWords(){
+        String s = " Find occurence of characters ";
+        int count = 1;
+
+        for(int i = 0;i<s.length()-1;i++){
+            if(s.charAt(i) == ' ' && s.charAt(i+1) != ' '){
+                count++;
+            }
+        }
+        System.out.println("Count of words is : "+count);
+    }
+
+    // Printing 0 to 100 without using numbers - use '%'
+    // use '/' for 1 to 100
+    // for 0 to 10 - 'n'-'d' - Use ASCII table for other numbers
+    @Test
+    public void print100(){
+
+        int start = 'e'%'e';
+
+        int end = 'n'-'d';
+
+        for(int i = start; i<=end;i++){
+            System.out.println(i);
+        }
+
+        /*while(start<=end){
+            System.out.println(start);
+            start++;
+        }*/
+    }
+
+    // Print numbers without loop, without recursion, without numbers
+    @Test
+    public void printNumbersWithoutLoop() {
+        BitSet bitSet = new BitSet();
+        bitSet.set('e'%'e', 'e');
+        String substring = bitSet.toString()
+                .replaceAll("\\{|, |}", "\n");
+        
+        System.out.println(bitSet.toString()); // Prints 0 to 100 in a set.
+        System.out.println(substring); // Prints 0 to 100 one by one.
+    }
+
+    // Simple recursion for printing n numbers, without loops
+    @Test
+    public void recursionSimple(){
+        printNumbers(0, 10);
+    }
+
+    public static void printNumbers(int startValue, int endValue){
+        if(startValue<=endValue){
+            System.out.println(startValue);
+            startValue++;
+            printNumbers(startValue, endValue);
+        }
+    }
+
+    //Print statement without semicolon (;)
+    @Test
+    public void withoutSemicolon(){
+
+        if(System.out.printf("Hello world") != null){
+
+        }
+        if(System.out.append("Hello world") != null){
+            
+        }
+    }
+
+    // Integer caching
+    // if == is used it'll be false. Limit is -128 to 127.
+    // Above range will give equal, out of this range will be not equal.
+    // .equals will work for all ranges
+    @Test
+    public void integerCaching(){
+        Integer a = 200;
+        Integer b = 200;
+
+        if(a == b){
+            System.out.println("Equal");
+        }else{
+            System.out.println("Not equal");
+        }
+    }
+
+    // NaN value
+    // We cannot compare 2 NaN values, it'll always gives false.
+    @Test
+    public void NaN(){
+        System.out.println((0.0/0.0)); // Prints NaN
+
+        double nan = 0.0/0.0;
+
+        if(nan == nan){
+            System.out.println("True");
+        }else{
+            System.out.println("False"); // False is output
+        }
+    }
+
+    // Print duplicate characters once in overall string
+    // Output: [H, e, y, r, o]
+    @Test
+    public void dup(){
+
+        String s = "Hey there How are you";
+        ArrayList<String> a = new ArrayList<>();
+
+        for(int i=0;i<s.length();i++){
+            for(int j=i+1;j<s.length();j++){
+                if(s.charAt(i) == s.charAt(j) && !(a.contains(String.valueOf(s.charAt(i)))) && s.charAt(i) != ' '){
+                    a.add(String.valueOf(s.charAt(i)));
+                }
+            }
+        }
+        System.out.println(a.toString());
+        System.out.println("Count of duplicates is : "+a.size());
+    }
+
+    // Printing all duplicate characters in a string
+    // Output: H e y e r e o 
+    @Test
+    public void dup1(){
+
+        String s = "Hey there How are you";
+        char[] c = s.toCharArray();
+
+        boolean isNotduplicate = false;
+
+        for(int i=0;i<s.length();i++){
+            boolean isduplicate = false;
+            for(int j=i+1;j<s.length();j++){
+                if(c[i] == c[j] && c[i] != ' '){
+                    isduplicate = true;
+                    break;
+                }
+            }
+            if(isduplicate){
+                System.out.print(c[i] + " ");
+                isNotduplicate = true;
+            }
+        }
+        if(!isNotduplicate){
+            System.out.println("No duplicates found");
+        }
+    }
+
+    // Program for subString
+    // Either begin index or begin and end index as parameters
+    // output: taking
+    // Risk
+    @Test
+    public void subString(){
+        String S1 = "Risk";
+        String S2 = "taking";
+
+        String S3 = S1 + S2;
+        System.out.println("S3 : "+S3);
+
+        S2 = S3.substring(0, S1.length());
+        System.out.println(S2);
+        S1 = S3.substring(S1.length());
+
+        System.out.println(S1);
+        System.out.println(S2);
+    }
+
+    @Test
+    public void findLeapYear(){
+        int year = 2021;
+
+        if(year % 4 == 0){
+            if(year % 100 == 0){
+                if(year % 400 == 0){
+                    System.out.println("It's a leap year");
+                }
+            }else{
+                System.out.println("It's a leap year");
+            }
+        }else{
+            System.out.println("Not a Leap year");
+        }
+    }
+    // Removes all duplicates characters and prints only unique chacters not even first occurences
+    @Test
+    public void removeDupChars(){
+        String s = "Hey there How are you";
+        ArrayList<String> a = new ArrayList<>();
+        String temp = "";
+        for(int i=0;i<s.length();i++){
+            for(int j=i+1;j<s.length();j++){
+                if(s.charAt(i) == s.charAt(j) && !(a.contains(String.valueOf(s.charAt(i)))) && s.charAt(i) != ' '){
+                    a.add(String.valueOf(s.charAt(i)));
+                    temp = temp+s.charAt(i);
+                }
+            }
+        }
+        String remove = "["+ temp +"]";
+        System.out.println(remove);
+        String fin = s.replaceAll(remove,"");
+        System.out.println(fin);
+    }
+
+    // Prints first occurences but removes other duplicate characters
+    @Test
+    public void printOnlyunique(){
+        String s = "Hey there How are you";
+        ArrayList<String> a = new ArrayList<>();
+
+        for(int i=0;i<s.length();i++){
+            if(!(a.contains(String.valueOf(s.charAt(i))))){
+                a.add(String.valueOf(s.charAt(i)));
+            }
+        }
+        String temp = "";
+        for(int k=0;k<a.size();k++){
+            temp = temp + a.get(k);
+        }
+        System.out.println(temp);
     }
 }
