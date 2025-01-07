@@ -5,7 +5,6 @@ import static org.junit.Assert.assertTrue;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.BitSet;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
@@ -30,6 +29,9 @@ public class AppTest
         assertTrue( true );
     }
 
+    // Removes duplicate words and prints the unique sentence
+    //Original Sentence: this is a sample sentence and this is a sample test
+    //Duplicate removed: this is a sample sentence and test 
     @Test
     public void removeDuplicateWords(){
         Scanner s = new Scanner(System.in);
@@ -52,6 +54,29 @@ public class AppTest
         System.out.println("Duplicate removed: "+dupRemoved);
     }
 
+    // Prints duplicates words alone
+    // Duplicates found are : [Hello, hey]
+    @Test
+    public void printDuplicateWords(){
+        String s = new String("Hello hi hey Hello hey");
+        String[] Strarr = s.split(" ");
+        boolean isduplicateFound = false;
+        ArrayList<String> list = new ArrayList<String>();
+        for(int i=0;i<Strarr.length;i++){
+            for(int j=i+1;j<Strarr.length;j++){
+                if(Strarr[i].equals(Strarr[j])){
+                    isduplicateFound = true;
+                    list.add(Strarr[j]);
+                }
+            }
+        }
+        if(isduplicateFound == false)
+            System.out.println("No duplicates found");
+        else
+            System.out.println("Duplicates found are : "+list.toString());
+    }
+
+    // Regex to keep and remove special characters
     @Test
     public void removeSpecialCharater(){
         /*
@@ -115,21 +140,6 @@ public class AppTest
         System.out.println("Length of string: " + len);
         System.out.println(vowelsCount);
         System.out.println(consonantsCount);
-    }
-
-    @Test
-    public void RecursionReverseString() {
-        String s = "New String";
-        int len = s.length();
-        reverseUsingRecursion(s, len - 1);
-    }
-
-    public void reverseUsingRecursion(String s, int i) {
-        if (i < 0) {
-            return;
-        }
-        System.out.print(s.charAt(i));
-        reverseUsingRecursion(s, i - 1);
     }
 
     @Test
@@ -254,6 +264,11 @@ public class AppTest
         System.out.println("Sum of digits is : "+sum); // Sum of digits is : 18
     }
 
+    // Prints duplicate characters alone
+    /*Duplicate characters in a given string: 
+        s
+        r
+    */
     @Test
     public void printDuplicates(){
         String string1 = "mssrr";  
@@ -279,6 +294,9 @@ public class AppTest
         }  
     }
 
+    // Removes duplicate characters and prints the rest of string
+    // Helo thri
+    // [l, e,  , h]
     @Test
     public void removeDup(){
         StringBuilder str = new StringBuilder();
@@ -295,7 +313,8 @@ public class AppTest
         System.out.println(str); // Helo thri
         System.out.println(sets.toString()); // [l, e,  , h]
     }
-
+    
+    // Checking substring present or not with regex
     @Test
     public void checkSubstringWithRegex(){
         String s1 = "Automation";
@@ -335,6 +354,7 @@ public class AppTest
             System.out.println("Not there");
     }
 
+    // Swap numbers 4 types
     @Test
     public void swapNumbers(){
         int a = 50;
@@ -378,6 +398,7 @@ public class AppTest
         }
     }
 
+    // Largest prime number within a limit
     @Test
     public void largestPrimeNumber(){
         
@@ -743,6 +764,22 @@ public class AppTest
             startValue++;
             printNumbers(startValue, endValue);
         }
+    }
+
+    // Recursion for string reverse
+    @Test
+    public void RecursionReverseString() {
+        String s = "New String";
+        int len = s.length();
+        reverseUsingRecursion(s, len - 1);
+    }
+
+    public void reverseUsingRecursion(String s, int i) {
+        if (i < 0) {
+            return;
+        }
+        System.out.print(s.charAt(i));
+        reverseUsingRecursion(s, i - 1);
     }
 
     //Print statement without semicolon (;)
