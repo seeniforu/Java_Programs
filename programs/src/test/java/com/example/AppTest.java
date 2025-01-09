@@ -6,9 +6,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.BitSet;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
@@ -74,6 +77,44 @@ public class AppTest
             System.out.println("No duplicates found");
         else
             System.out.println("Duplicates found are : "+list.toString());
+    }
+
+    // Print duplicates using HashMap
+    @Test
+    public void PrintDuplicateUsingHashMap(){
+        String s = new String("Hello hi hey Hello hey");
+        String[] Strarr = s.split(" ");
+        
+        Map<String, Integer> myMap = new HashMap<>();
+        for(String e:Strarr){
+            Integer count = myMap.get(e);
+            if(count == null){
+                myMap.put(e, 1);
+            }else{
+                myMap.put(e, ++count);
+            }
+        }
+        System.out.println(myMap.toString());
+        Set<Entry<String, Integer>> mySet = myMap.entrySet();
+        for(Entry<String, Integer> entry:mySet){
+            if(entry.getValue()>1){
+                System.out.println(entry.getKey());
+            }
+        }
+    }
+
+    // Print duplicates using hashset
+    @Test
+    public void dupUsingHashset(){
+        String s = new String("Hello hi hey Hello hey");
+        String[] Strarr = s.split(" ");
+        Set<String> se = new HashSet<>();
+
+        for(int i=0;i<Strarr.length;i++){
+            if(!se.add(Strarr[i])){
+                System.out.println(Strarr[i]);
+            }
+        }
     }
 
     // Regex to keep and remove special characters
@@ -908,6 +949,7 @@ public class AppTest
             System.out.println("Not a Leap year");
         }
     }
+
     // Removes all duplicates characters and prints only unique chacters not even first occurences
     @Test
     public void removeDupChars(){
@@ -944,5 +986,73 @@ public class AppTest
             temp = temp + a.get(k);
         }
         System.out.println(temp);
+    }
+
+    // Star patterns When using both loops
+    /* 
+    * 
+    * * 
+    * * * 
+    * * * * 
+    * * * * * 
+    * * * * 
+    * * * 
+    * * 
+    *  
+    */
+    @Test
+    public void printStarPattern(){
+        // For 1 to 5
+        for(int i=0;i<5;i++){
+            for(int j=0;j<i;j++){
+                System.out.print("*"+" ");
+            }
+            System.out.println("");
+        }
+
+        // For 5 to 1
+        for(int i=0;i<5;i++){
+            for(int j=5;j>i;j--){
+                System.out.print("*"+" ");
+            }
+            System.out.println("");
+        }
+    }
+
+    /* Below pattern code
+              * 
+            * * 
+          * * * 
+        * * * * 
+      * * * * * 
+     */
+    @Test
+    public void reverseStarPattern(){
+        for(int i=1;i<=5;i++){
+            for(int j=5;j>i;j--){
+                System.out.print(" ");
+            }
+            for(int k=1;k<=i;k++){
+                System.out.print("* ");
+            }
+            System.out.println();
+        }
+    }
+
+    @Test
+    public void completeTriangle(){
+        int length = 9;
+        for(int i=1;i<=length;i++){
+            for(int j=length;j>i;j--){
+                System.out.print("  ");
+            }
+            for(int k=1;k<=i;k++){
+                System.out.print("* ");
+            }
+            for(int l=1;l<i;l++){
+                System.out.print("* ");
+            }
+            System.out.println();
+        }
     }
 }
