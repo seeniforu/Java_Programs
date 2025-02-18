@@ -971,6 +971,7 @@ public class AppTest
     }
 
     // Prints first occurences but removes other duplicate characters
+    // Output: Hey throwau
     @Test
     public void printOnlyunique(){
         String s = "Hey there How are you";
@@ -1054,5 +1055,89 @@ public class AppTest
             }
             System.out.println();
         }
+    }
+
+    // To get unique and duplicate characters in a given string
+    // output:
+    // Unique Characters are : poain
+    // Duplicates are : rgm
+    @Test
+    public void dup2(){
+        String s = "programming";
+        String c = returnUniqueAndDuplicates(s);
+        System.out.println("Duplicates are : "+c);
+        
+    }
+
+    public static String returnUniqueAndDuplicates(String s){
+        String duplicate = "";
+        String unique = "";
+        String t = "";
+        int count = 0;
+        char[] a = s.toCharArray();
+        for(int i=0;i<a.length;i++){
+            for(int j=i+1;j<a.length;j++){
+                if(a[i] == a[j]){
+                    count++;
+                    t = String.valueOf(a[j]);
+                    if(!duplicate.contains(t) && t !=" "){
+                        duplicate = duplicate + a[i];
+                    }
+                }
+            }
+            if(count == 0){
+                if(!(duplicate.contains(String.valueOf(a[i])))){
+                    unique = unique + a[i];
+                }
+            }
+            count = 0;
+        }
+        System.out.println("Unique Characters are : "+unique);
+        return duplicate;
+    }
+
+    @Test
+    public void findIndexOne(){
+        int[] a = {6,8,11,6,7,18};
+        int target = 133;
+        boolean flag = true;
+
+        for(int i=0;i<a.length-1;i++){
+            int temp = a[i]+a[i+1];
+            if(temp == target){
+                System.out.println(i);
+                System.out.println(i+1);
+            }else{
+                flag = false;
+            }
+        }
+        if(flag == false)
+            System.out.println("No index values matching target");
+    }
+
+    @Test
+    public void findIndexTwo(){
+        int[] a = {6,8,11,6,7,18};
+        int target = 177;
+        boolean flagFound = false;
+        boolean flagNotFound = false;
+
+        for(int i=0;i<a.length-1;i++){
+            for(int j=i+1;j<a.length-1;j++){
+                int temp = a[i]+a[j];
+                if(temp == target){
+                    System.out.println("First Index is : " + i);
+                    System.out.println("Second Index is : " + j);
+                    flagFound = true;
+                }
+            }
+            if(flagFound == true){
+                continue;
+            }else{
+                flagNotFound = true;
+            }
+        }
+        if(flagNotFound == true)
+            System.out.println("No index values matching target");
     }
 }
