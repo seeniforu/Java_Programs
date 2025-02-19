@@ -133,7 +133,7 @@ public class AppTest
         String s1 = s.replaceAll(regexOne, "");
         String s2 = s.replaceAll(regexTwo,"");
 
-        System.out.println(s1); // Hello thereIm Srinivasan
+        System.out.println(s1); // Hello there Im Srinivasan
         System.out.println(s2); //!@#$%^&*()['@#$%^@#$%^]
     }
 
@@ -144,7 +144,7 @@ public class AppTest
        String regex = "[aeiouAEIOU]";
 
        String b = s.replaceAll(regex, "");
-       System.out.println(b);
+       System.out.println(b); // Srnvsn
     }
 
     @Test
@@ -156,8 +156,8 @@ public class AppTest
 
        String Vowels = s.replaceAll(regexforVowels, "");
        String Consonants = s.replaceAll(regexforConsonants, "");
-       System.out.println(Vowels);
-       System.out.println(Consonants);
+       System.out.println(Vowels); // iiaa
+       System.out.println(Consonants); // Srnvsn
     }
 
     @Test
@@ -489,7 +489,7 @@ public class AppTest
         System.out.println("Sum of digits in the array: "+sum);
     }
 
-    // Sum of random number sin array
+    // Sum of random numbers in array
     @Test
     public void sumOfRandomNumbersinArray(){
         int arr[] = new int[5];
